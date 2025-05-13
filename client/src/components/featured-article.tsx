@@ -72,17 +72,19 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
               </h3>
             </Link>
             <p className="text-gray-600 mb-4 dark:text-gray-300">{article.excerpt}</p>
-            <div className="flex items-center">
-              <img 
-                className="w-10 h-10 rounded-full mr-4" 
-                src={article.author.avatar} 
-                alt={article.author.name} 
-              />
-              <div>
-                <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">{formatDate(article.publishedAt)}</div>
+            {article.author && (
+              <div className="flex items-center">
+                <img 
+                  className="w-10 h-10 rounded-full mr-4" 
+                  src={article.author.avatar || 'https://via.placeholder.com/40'} 
+                  alt={article.author.name} 
+                />
+                <div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{formatDate(article.publishedAt)}</div>
+                </div>
               </div>
-            </div>
+            )}
             <div className="mt-4">
               <Link 
                 href={`/articles/${article.slug}`} 
