@@ -17,7 +17,7 @@ import {
   type InsertSubscriber
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, sql, like, and, asc } from "drizzle-orm";
+import { eq, desc, sql, like, and, asc, or } from "drizzle-orm";
 
 // Interface for all storage operations
 export interface IStorage {
@@ -1359,4 +1359,281 @@ In future articles, we'll explore advanced serverless patterns, performance opti
   }
 }
 
-export const storage = new MemStorage();
+// Database implementation of the storage interface
+export class DatabaseStorage implements IStorage {
+  // Categories
+  async getAllCategories(): Promise<Category[]> {
+    return await db.select().from(categories);
+  }
+  
+  async getCategoryById(id: number): Promise<Category | undefined> {
+    const result = await db.select().from(categories).where(eq(categories.id, id));
+    return result[0];
+  }
+  
+  async getCategoryBySlug(slug: string): Promise<Category | undefined> {
+    const result = await db.select().from(categories).where(eq(categories.slug, slug));
+    return result[0];
+  }
+  
+  async createCategory(category: InsertCategory): Promise<Category> {
+    const result = await db.insert(categories).values(category).returning();
+    return result[0];
+  }
+  
+  // Articles
+  async getArticles(page: number, limit: number): Promise<Article[]> {
+    const offset = (page - 1) * limit;
+    return await db.select()
+      .from(articles)
+      .orderBy(desc(articles.publishedAt))
+      .limit(limit)
+      .offset(offset);
+  }
+  
+  async getArticlesWithDetails(page: number, limit: number): Promise<any[]> {
+    const offset = (page - 1) * limit;
+    const articlesData = await db.select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      excerpt: articles.excerpt,
+      featuredImage: articles.featuredImage,
+      publishedAt: articles.publishedAt,
+      readTime: articles.readTime,
+      author: authors,
+      category: categories,
+    })
+    .from(articles)
+    .innerJoin(authors, eq(articles.authorId, authors.id))
+    .innerJoin(categories, eq(articles.categoryId, categories.id))
+    .orderBy(desc(articles.publishedAt))
+    .limit(limit)
+    .offset(offset);
+    
+    // For each article, get its tags
+    const result = await Promise.all(
+      articlesData.map(async (article) => {
+        const tags = await this.getTagsByArticleId(article.id);
+        return { ...article, tags };
+      })
+    );
+    
+    return result;
+  }
+  
+  async getArticleById(id: number): Promise<Article | undefined> {
+    const result = await db.select().from(articles).where(eq(articles.id, id));
+    return result[0];
+  }
+  
+  async getArticleBySlug(slug: string): Promise<Article | undefined> {
+    const result = await db.select().from(articles).where(eq(articles.slug, slug));
+    return result[0];
+  }
+  
+  async getArticleBySlugWithDetails(slug: string): Promise<any | undefined> {
+    const result = await db.select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      excerpt: articles.excerpt,
+      content: articles.content,
+      featuredImage: articles.featuredImage,
+      publishedAt: articles.publishedAt,
+      readTime: articles.readTime,
+      author: authors,
+      category: categories,
+    })
+    .from(articles)
+    .innerJoin(authors, eq(articles.authorId, authors.id))
+    .innerJoin(categories, eq(articles.categoryId, categories.id))
+    .where(eq(articles.slug, slug));
+    
+    if (result.length === 0) {
+      return undefined;
+    }
+    
+    const article = result[0];
+    const tags = await this.getTagsByArticleId(article.id);
+    return { ...article, tags };
+  }
+  
+  async getArticlesByCategoryId(categoryId: number, page: number, limit: number): Promise<any[]> {
+    const offset = (page - 1) * limit;
+    const articlesData = await db.select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      excerpt: articles.excerpt,
+      featuredImage: articles.featuredImage,
+      publishedAt: articles.publishedAt,
+      readTime: articles.readTime,
+      author: authors,
+      category: categories,
+    })
+    .from(articles)
+    .innerJoin(authors, eq(articles.authorId, authors.id))
+    .innerJoin(categories, eq(articles.categoryId, categories.id))
+    .where(eq(articles.categoryId, categoryId))
+    .orderBy(desc(articles.publishedAt))
+    .limit(limit)
+    .offset(offset);
+    
+    // For each article, get its tags
+    const result = await Promise.all(
+      articlesData.map(async (article) => {
+        const tags = await this.getTagsByArticleId(article.id);
+        return { ...article, tags };
+      })
+    );
+    
+    return result;
+  }
+  
+  async getArticlesByCategorySlug(categorySlug: string, page: number, limit: number): Promise<any[]> {
+    const category = await this.getCategoryBySlug(categorySlug);
+    if (!category) {
+      return [];
+    }
+    return this.getArticlesByCategoryId(category.id, page, limit);
+  }
+  
+  async getFeaturedArticles(): Promise<any[]> {
+    const articlesData = await db.select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      excerpt: articles.excerpt,
+      featuredImage: articles.featuredImage,
+      publishedAt: articles.publishedAt,
+      readTime: articles.readTime,
+      author: authors,
+      category: categories,
+    })
+    .from(articles)
+    .innerJoin(authors, eq(articles.authorId, authors.id))
+    .innerJoin(categories, eq(articles.categoryId, categories.id))
+    .where(eq(articles.isFeatured, true))
+    .orderBy(desc(articles.publishedAt))
+    .limit(5);
+    
+    // For each article, get its tags
+    const result = await Promise.all(
+      articlesData.map(async (article) => {
+        const tags = await this.getTagsByArticleId(article.id);
+        return { ...article, tags };
+      })
+    );
+    
+    return result;
+  }
+  
+  async createArticle(article: InsertArticle): Promise<Article> {
+    const result = await db.insert(articles).values(article).returning();
+    return result[0];
+  }
+  
+  // Authors
+  async getAuthorById(id: number): Promise<Author | undefined> {
+    const result = await db.select().from(authors).where(eq(authors.id, id));
+    return result[0];
+  }
+  
+  async createAuthor(author: InsertAuthor): Promise<Author> {
+    const result = await db.insert(authors).values(author).returning();
+    return result[0];
+  }
+  
+  // Tags
+  async getAllTags(): Promise<Tag[]> {
+    return await db.select().from(tags);
+  }
+  
+  async getTagById(id: number): Promise<Tag | undefined> {
+    const result = await db.select().from(tags).where(eq(tags.id, id));
+    return result[0];
+  }
+  
+  async getTagBySlug(slug: string): Promise<Tag | undefined> {
+    const result = await db.select().from(tags).where(eq(tags.slug, slug));
+    return result[0];
+  }
+  
+  async getPopularTags(limit: number): Promise<any[]> {
+    // Get count of articles per tag
+    const tagsWithCount = await db
+      .select({
+        id: tags.id,
+        name: tags.name,
+        slug: tags.slug,
+        count: sql<number>`count(${articleTags.articleId})`,
+      })
+      .from(tags)
+      .leftJoin(articleTags, eq(tags.id, articleTags.tagId))
+      .groupBy(tags.id, tags.name, tags.slug)
+      .orderBy(desc(sql<number>`count(${articleTags.articleId})`))
+      .limit(limit);
+      
+    return tagsWithCount;
+  }
+  
+  async createTag(tag: InsertTag): Promise<Tag> {
+    const result = await db.insert(tags).values(tag).returning();
+    return result[0];
+  }
+  
+  // Article Tags
+  async addTagToArticle(articleTag: InsertArticleTag): Promise<void> {
+    await db.insert(articleTags).values(articleTag);
+  }
+  
+  async getTagsByArticleId(articleId: number): Promise<Tag[]> {
+    const result = await db
+      .select({
+        id: tags.id,
+        name: tags.name,
+        slug: tags.slug,
+      })
+      .from(tags)
+      .innerJoin(articleTags, eq(tags.id, articleTags.tagId))
+      .where(eq(articleTags.articleId, articleId));
+    
+    return result;
+  }
+  
+  // Search
+  async searchArticles(query: string): Promise<any[]> {
+    const articlesData = await db.select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      excerpt: articles.excerpt,
+      featuredImage: articles.featuredImage,
+      publishedAt: articles.publishedAt,
+      category: categories,
+    })
+    .from(articles)
+    .innerJoin(categories, eq(articles.categoryId, categories.id))
+    .where(
+      or(
+        like(articles.title, `%${query}%`),
+        like(articles.excerpt, `%${query}%`),
+        like(articles.content, `%${query}%`)
+      )
+    )
+    .orderBy(desc(articles.publishedAt))
+    .limit(10);
+    
+    return articlesData;
+  }
+  
+  // Subscribers
+  async addSubscriber(subscriber: InsertSubscriber): Promise<any> {
+    const result = await db.insert(subscribers).values(subscriber).returning();
+    return result[0];
+  }
+}
+
+// Use the database storage implementation
+export const storage = new DatabaseStorage();
