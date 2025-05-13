@@ -22,7 +22,7 @@ export default function Article() {
 
   useEffect(() => {
     if (article) {
-      document.title = `${article.title} - CloudCodeCraft`;
+      document.title = `${article.title} - TechOrbeez`;
     }
   }, [article]);
 
