@@ -16,6 +16,8 @@ import {
   type InsertArticleTag,
   type InsertSubscriber
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, desc, sql, like, and, asc } from "drizzle-orm";
 
 // Interface for all storage operations
 export interface IStorage {

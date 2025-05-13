@@ -1,4 +1,5 @@
 import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -79,6 +80,42 @@ export const subscribers = pgTable("subscribers", {
 export const insertSubscriberSchema = createInsertSchema(subscribers).omit({
   id: true,
 });
+
+// Define relations between tables
+export const categoriesRelations = relations(categories, ({ many }) => ({
+  articles: many(articles),
+}));
+
+export const authorsRelations = relations(authors, ({ many }) => ({
+  articles: many(articles),
+}));
+
+export const tagsRelations = relations(tags, ({ many }) => ({
+  articleTags: many(articleTags),
+}));
+
+export const articlesRelations = relations(articles, ({ one, many }) => ({
+  author: one(authors, {
+    fields: [articles.authorId],
+    references: [authors.id],
+  }),
+  category: one(categories, {
+    fields: [articles.categoryId],
+    references: [categories.id],
+  }),
+  articleTags: many(articleTags),
+}));
+
+export const articleTagsRelations = relations(articleTags, ({ one }) => ({
+  article: one(articles, {
+    fields: [articleTags.articleId],
+    references: [articles.id],
+  }),
+  tag: one(tags, {
+    fields: [articleTags.tagId],
+    references: [tags.id],
+  }),
+}));
 
 // Types for schema
 export type Category = typeof categories.$inferSelect;
