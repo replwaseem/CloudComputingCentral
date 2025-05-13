@@ -44,7 +44,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
           <div className="md:flex-shrink-0 md:w-2/5">
             <Link href={`/articles/${article.slug}`}>
               <img 
-                src={article.featuredImage} 
+                src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
                 alt={article.title} 
                 className="h-48 w-full object-cover md:h-full md:w-full hover:opacity-90 transition-opacity" 
               />
@@ -64,7 +64,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
                   {tag.name}
                 </span>
               ))}
-              <span className="text-xs text-gray-500 ml-auto dark:text-gray-400">{article.readTime} min read</span>
+              <span className="text-xs text-gray-500 ml-auto dark:text-gray-400">{article.readTime || 0} min read</span>
             </div>
             <Link href={`/articles/${article.slug}`}>
               <h3 className="text-2xl font-bold text-gray-900 mb-2 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">

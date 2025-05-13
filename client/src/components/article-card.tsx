@@ -32,7 +32,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     <article className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
       <Link href={`/articles/${article.slug}`}>
         <img 
-          src={article.featuredImage} 
+          src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
           alt={article.title} 
           className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
         />

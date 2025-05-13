@@ -57,19 +57,21 @@ export default function Article() {
             <article className="bg-white rounded-lg shadow-md p-8 dark:bg-gray-800">
               <div className="mb-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Link href={`/categories/${article.category.slug}`}>
-                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${getCategoryColor(article.category.name)}`}>
-                      {article.category.name}
-                    </span>
-                  </Link>
-                  {article.tags.map((tag: any) => (
+                  {article.category && (
+                    <Link href={`/categories/${article.category.slug}`}>
+                      <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${getCategoryColor(article.category.name)}`}>
+                        {article.category.name}
+                      </span>
+                    </Link>
+                  )}
+                  {article.tags && article.tags.map((tag: any) => (
                     <Link key={tag.id} href={`/tags/${tag.slug}`}>
                       <span className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
                         {tag.name}
                       </span>
                     </Link>
                   ))}
-                  <span className="text-xs text-gray-500 ml-auto dark:text-gray-400">{article.readTime} min read</span>
+                  <span className="text-xs text-gray-500 ml-auto dark:text-gray-400">{article.readTime || 0} min read</span>
                 </div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">{article.title}</h1>
                 <p className="text-gray-600 text-lg mb-6 dark:text-gray-300">{article.excerpt}</p>
@@ -108,19 +110,21 @@ export default function Article() {
               
               <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                  <div className="flex items-center mb-4 sm:mb-0">
-                    <img 
-                      className="w-10 h-10 rounded-full mr-4" 
-                      src={article.author.avatar} 
-                      alt={article.author.name} 
-                    />
-                    <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {formatDate(article.publishedAt)} • {article.readTime} min read
+                  {article.author && (
+                    <div className="flex items-center mb-4 sm:mb-0">
+                      <img 
+                        className="w-10 h-10 rounded-full mr-4" 
+                        src={article.author.avatar || 'https://via.placeholder.com/40'} 
+                        alt={article.author.name} 
+                      />
+                      <div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {formatDate(article.publishedAt)} • {article.readTime || 0} min read
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                   <div className="flex items-center space-x-4">
                     <Button variant="ghost" size="sm" className="text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400">
                       <Share2 className="h-5 w-5 mr-1" />
