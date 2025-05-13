@@ -1,6 +1,9 @@
-require('dotenv').config();
-const { Pool } = require('@neondatabase/serverless');
-const format = require('pg-format');
+import 'dotenv/config';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import format from 'pg-format';
+import ws from 'ws';
+
+neonConfig.webSocketConstructor = ws;
 
 async function main() {
   console.log('Seeding database...');
@@ -277,7 +280,7 @@ This approach contrasts with monolithic architectures, where all components of a
       article.categoryId = categoryIds[article.categoryId - 1];
       
       const articleInsertResult = await client.query(
-        'INSERT INTO articles (title, slug, excerpt, content, "featuredImage", "authorId", "categoryId", "publishedAt", "isFeatured", "readTime") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id',
+        'INSERT INTO articles (title, slug, excerpt, content, featured_image, author_id, category_id, published_at, is_featured, read_time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id',
         [article.title, article.slug, article.excerpt, article.content, article.featuredImage, article.authorId, article.categoryId, article.publishedAt, article.isFeatured, article.readTime]
       );
       
@@ -299,7 +302,7 @@ This approach contrasts with monolithic architectures, where all components of a
       
       for (const tagId of articleTagsToAssign) {
         await client.query(
-          'INSERT INTO article_tags ("articleId", "tagId") VALUES ($1, $2)',
+          'INSERT INTO article_tags (article_id, tag_id) VALUES ($1, $2)',
           [articleId, tagId]
         );
       }
@@ -316,7 +319,7 @@ This approach contrasts with monolithic architectures, where all components of a
     
     for (const subscriber of subscriberData) {
       await client.query(
-        'INSERT INTO subscribers (email, "subscriptionDate") VALUES ($1, $2)',
+        'INSERT INTO subscribers (email, subscription_date) VALUES ($1, $2)',
         [subscriber.email, subscriber.subscriptionDate]
       );
     }
@@ -339,4 +342,8 @@ This approach contrasts with monolithic architectures, where all components of a
   }
 }
 
-main().catch(console.error);
+// Execute the seeding function
+main().catch(error => {
+  console.error('Error running seed script:', error);
+  process.exit(1);
+});
