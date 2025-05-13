@@ -6,7 +6,8 @@ import {
   insertCategorySchema, 
   insertTagSchema,
   insertAuthorSchema,
-  insertSubscriberSchema
+  insertSubscriberSchema,
+  insertArticleTagSchema
 } from "@shared/schema";
 import { ZodError } from "zod";
 
@@ -148,6 +149,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.status(400).json({ message: "Invalid article data", errors: error.errors });
       } else {
         res.status(500).json({ message: "Failed to create article" });
+      }
+    }
+  });
+
+  // Add tag to article (admin endpoint)
+  app.post("/api/article-tags", async (req, res) => {
+    try {
+      const data = insertArticleTagSchema.parse(req.body);
+      await storage.addTagToArticle(data);
+      res.status(201).json({ message: "Tag added to article successfully" });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        res.status(400).json({ message: "Invalid article tag data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to add tag to article" });
       }
     }
   });
