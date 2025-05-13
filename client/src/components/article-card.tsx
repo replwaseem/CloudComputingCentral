@@ -39,10 +39,12 @@ export default function ArticleCard({ article }: ArticleCardProps) {
       </Link>
       <div className="p-5">
         <div className="flex items-center mb-2">
-          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${getCategoryColor(article.category.name)}`}>
-            {article.category.name}
-          </span>
-          <span className="text-xs text-gray-500 ml-2 dark:text-gray-400">{article.readTime} min read</span>
+          {article.category && (
+            <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${getCategoryColor(article.category.name)}`}>
+              {article.category.name}
+            </span>
+          )}
+          <span className="text-xs text-gray-500 ml-2 dark:text-gray-400">{article.readTime || 5} min read</span>
         </div>
         <Link href={`/articles/${article.slug}`}>
           <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
@@ -50,17 +52,19 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </h3>
         </Link>
         <p className="text-gray-600 mb-4 dark:text-gray-300">{article.excerpt}</p>
-        <div className="flex items-center">
-          <img 
-            className="w-8 h-8 rounded-full mr-2" 
-            src={article.author.avatar} 
-            alt={article.author.name} 
-          />
-          <div>
-            <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">{formatDate(article.publishedAt)}</div>
+        {article.author && (
+          <div className="flex items-center">
+            <img 
+              className="w-8 h-8 rounded-full mr-2" 
+              src={article.author.avatar || 'https://via.placeholder.com/40'} 
+              alt={article.author.name} 
+            />
+            <div>
+              <div className="text-sm font-medium text-gray-900 dark:text-white">{article.author.name}</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">{formatDate(article.publishedAt)}</div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </article>
   );

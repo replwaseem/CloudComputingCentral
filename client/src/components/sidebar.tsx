@@ -67,7 +67,7 @@ export default function Sidebar() {
       <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800">
         <h3 className="text-xl font-bold text-gray-900 mb-4 dark:text-white">Categories</h3>
         <div className="space-y-2">
-          {categories?.map((category: any) => (
+          {categories && categories.map((category: any) => (
             <Link 
               key={category.id} 
               href={`/categories/${category.slug}`}
@@ -93,7 +93,7 @@ export default function Sidebar() {
       <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800">
         <h3 className="text-xl font-bold text-gray-900 mb-4 dark:text-white">Popular Posts</h3>
         <div className="space-y-4">
-          {popularArticles?.slice(0, 3).map((article: any, index: number) => (
+          {popularArticles && popularArticles.slice(0, 3).map((article: any, index: number) => (
             <div key={article.id} className="flex items-start space-x-3">
               <span className="text-2xl font-bold text-gray-300 dark:text-gray-600">{(index + 1).toString().padStart(2, '0')}</span>
               <div>
@@ -146,7 +146,7 @@ export default function Sidebar() {
       <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800">
         <h3 className="text-xl font-bold text-gray-900 mb-4 dark:text-white">Popular Tags</h3>
         <div className="flex flex-wrap gap-2">
-          {popularTags?.map((tag: any) => (
+          {popularTags && popularTags.map((tag: any) => (
             <Link 
               key={tag.id} 
               href={`/tags/${tag.slug}`}

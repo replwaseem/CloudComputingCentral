@@ -47,7 +47,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      ) : featuredArticle?.length > 0 ? (
+      ) : (featuredArticle && featuredArticle.length > 0) ? (
         <FeaturedArticle article={featuredArticle[0]} />
       ) : null}
 
@@ -94,7 +94,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {latestArticles?.map((article: any) => (
+              {latestArticles && latestArticles.map((article: any) => (
                 <ArticleCard key={article.id} article={article} />
               ))}
             </div>
