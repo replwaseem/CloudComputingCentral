@@ -43,6 +43,9 @@ export default function Header() {
             <Link href="/articles" className="text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-white font-medium">
               Articles
             </Link>
+            <Link href="/about" className="text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-white font-medium">
+              About
+            </Link>
             <div className="relative group">
               <button className="text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-white font-medium flex items-center">
                 Categories
@@ -115,6 +118,9 @@ export default function Header() {
             </Link>
             <Link href="/articles" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
               Articles
+            </Link>
+            <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+              About
             </Link>
             <div className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">
               Categories

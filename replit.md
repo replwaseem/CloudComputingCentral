@@ -11,6 +11,8 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **Build Tool**: Vite for fast development and production builds
 
 ## Recent Changes
+- **January 13, 2025**: Added comprehensive About page with personal introduction, skills, experience timeline, and contact information
+- **January 13, 2025**: Updated navigation menu to include About page link (desktop and mobile)
 - **January 13, 2025**: Fixed sidebar alignment consistency across all pages (home, articles, article details, categories)
 - **January 13, 2025**: Enhanced Sidebar component with optional className and style props for flexible animations
 - **January 13, 2025**: Resolved Node.js v20 upgrade and port conflict issues (SERVER_PORT environment variable support)
@@ -32,6 +34,8 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - Database schema is properly configured for PostgreSQL integration
 - All API endpoints are functional and returning data
 - Frontend is displaying articles, categories, and tags correctly
+- Complete About page with personal profile, skills showcase, experience timeline, and contact information
+- Navigation menu includes About page link (accessible from header navigation)
 - Sidebar alignment is consistent across all pages (home, articles, article details, categories)
 - Playful loading animations and micro-interactions fully implemented
 - Enhanced user experience with smooth transitions, hover effects, and animated content

@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Article from "@/pages/article";
 import Articles from "@/pages/articles";
 import Category from "@/pages/category";
+import About from "@/pages/about";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/articles" component={Articles} />
       <Route path="/articles/:slug" component={Article} />
       <Route path="/categories/:slug" component={Category} />
+      <Route path="/about" component={About} />
       <Route component={NotFound} />
     </Switch>
   );
