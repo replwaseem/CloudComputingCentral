@@ -62,7 +62,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="lg:w-1/3 space-y-8">
+    <aside className="lg:w-1/3 space-y-8 animate-slide-up" style={{ animationDelay: '300ms' } as React.CSSProperties}>
       {/* Categories Widget */}
       <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800">
         <h3 className="text-xl font-bold text-gray-900 mb-4 dark:text-white">Categories</h3>
