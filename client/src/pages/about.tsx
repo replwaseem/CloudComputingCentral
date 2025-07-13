@@ -41,7 +41,7 @@ export default function About() {
               </div>
               <div className="flex items-center">
                 <Calendar className="h-4 w-4 mr-1" />
-                {new Date().getFullYear() - 2018}+ years experience
+                15+ years experience
               </div>
               <div className="flex items-center">
                 <Coffee className="h-4 w-4 mr-1" />
@@ -58,7 +58,7 @@ export default function About() {
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">About Me</h2>
                   <div className="prose dark:prose-invert max-w-none">
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      Welcome to TechOrbeez! I'm a passionate cloud computing professional with over {new Date().getFullYear() - 2018} years 
+                      Welcome to TechOrbeez! I'm a passionate cloud computing professional with over 15 years 
                       of experience in building scalable applications and infrastructure solutions.
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
