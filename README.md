@@ -1,4 +1,4 @@
-# TechOrbeez Blog
+# StackLoom Blog
 
 A modern, responsive blog platform focused on Cloud Computing technologies including AWS, Python, and Node.js.
 
@@ -45,7 +45,7 @@ A modern, responsive blog platform focused on Cloud Computing technologies inclu
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd techorbeez-blog
+   cd stackloom-blog
    ```
 
 2. **Install dependencies**
@@ -66,7 +66,7 @@ A modern, responsive blog platform focused on Cloud Computing technologies inclu
    cp .env.example .env
    
    # Edit .env and set your database credentials:
-   # DATABASE_URL=postgresql://username:password@localhost:5432/techorbeez
+   # DATABASE_URL=postgresql://username:password@localhost:5432/stackloom
    ```
 
 4. **Run database migrations** (only if using PostgreSQL)

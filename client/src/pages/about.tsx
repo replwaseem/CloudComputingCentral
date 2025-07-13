@@ -8,8 +8,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About - TechOrbeez</title>
-        <meta name="description" content="Learn about the author behind TechOrbeez - a passionate cloud computing expert sharing insights on AWS, Python, and NodeJS." />
+        <title>About - StackLoom</title>
+        <meta name="description" content="Learn about the author behind StackLoom - a passionate cloud computing expert sharing insights on AWS, Python, and NodeJS." />
       </Helmet>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -58,7 +58,7 @@ export default function About() {
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">About Me</h2>
                   <div className="prose dark:prose-invert max-w-none">
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      Welcome to TechOrbeez! I'm a passionate cloud computing professional with over 15 years 
+                      Welcome to StackLoom! I'm a passionate cloud computing professional with over 15 years 
                       of experience in building scalable applications and infrastructure solutions.
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 mb-4">

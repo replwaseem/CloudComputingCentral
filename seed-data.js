@@ -34,9 +34,9 @@ async function main() {
     
     // Insert authors
     const authorData = [
-      { name: 'Alex Stevens', email: 'alex@techorbeez.com', bio: 'AWS Certified Solutions Architect with 10 years of experience', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
-      { name: 'Sarah Johnson', email: 'sarah@techorbeez.com', bio: 'Python expert and DevOps enthusiast', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
-      { name: 'Michael Chen', email: 'michael@techorbeez.com', bio: 'Full-stack developer specializing in NodeJS and React', avatar: 'https://randomuser.me/api/portraits/men/67.jpg' }
+      { name: 'Alex Stevens', email: 'alex@stackloom.com', bio: 'AWS Certified Solutions Architect with 10 years of experience', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+      { name: 'Sarah Johnson', email: 'sarah@stackloom.com', bio: 'Python expert and DevOps enthusiast', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+      { name: 'Michael Chen', email: 'michael@stackloom.com', bio: 'Full-stack developer specializing in NodeJS and React', avatar: 'https://randomuser.me/api/portraits/men/67.jpg' }
     ];
     
     const authorInsertResult = await client.query(

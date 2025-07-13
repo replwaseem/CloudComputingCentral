@@ -17,7 +17,7 @@ export default function Footer() {
               <span className="text-primary-500 dark:text-primary-400">
                 <Cloud className="h-8 w-8" />
               </span>
-              <span className="ml-2 font-bold text-xl text-gray-900 dark:text-white">TechOrbeez</span>
+              <span className="ml-2 font-bold text-xl text-gray-900 dark:text-white">StackLoom</span>
             </div>
             <p className="mt-2 text-gray-600 max-w-xs dark:text-gray-400">
               Sharing knowledge about cloud computing with AWS, Python, and Node.js.

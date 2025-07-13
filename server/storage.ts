@@ -110,35 +110,35 @@ export class MemStorage implements IStorage {
     // Create authors
     const author1 = this.createAuthor({
       name: "Alex Stevens",
-      email: "alex@cloudcodecraft.com",
+      email: "alex@stackloom.com",
       bio: "Cloud architect with 10+ years of experience in AWS",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     });
     
     const author2 = this.createAuthor({
       name: "Sarah Johnson",
-      email: "sarah@cloudcodecraft.com",
+      email: "sarah@stackloom.com",
       bio: "DevOps engineer specializing in AWS infrastructure",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     });
     
     const author3 = this.createAuthor({
       name: "Michael Chen",
-      email: "michael@cloudcodecraft.com",
+      email: "michael@stackloom.com",
       bio: "Python developer and machine learning enthusiast",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     });
     
     const author4 = this.createAuthor({
       name: "David Wilson",
-      email: "david@cloudcodecraft.com",
+      email: "david@stackloom.com",
       bio: "Full-stack developer with focus on Node.js and serverless",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     });
 
     const author5 = this.createAuthor({
       name: "Emily Rodriguez",
-      email: "emily@cloudcodecraft.com",
+      email: "emily@stackloom.com",
       bio: "Cloud solutions architect and AWS certified professional",
       avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     });

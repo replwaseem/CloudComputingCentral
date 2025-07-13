@@ -1,10 +1,10 @@
-# Guide for Adding Articles to TechOrbeez Blog
+# Guide for Adding Articles to StackLoom Blog
 
-This guide walks you through the process of adding new articles to your TechOrbeez blog.
+This guide walks you through the process of adding new articles to your StackLoom blog.
 
 ## Step 1: Understand the Article Structure
 
-Every article in the TechOrbeez blog has these required fields:
+Every article in the StackLoom blog has these required fields:
 
 - `title`: The title of your article
 - `slug`: URL-friendly version of the title (lowercase, hyphens instead of spaces)
@@ -115,7 +115,7 @@ node your-article-file.js
    - The search results when searching for keywords from your article
    - The featured articles section (if you set isFeatured to true)
 
-## Writing Tips for TechOrbeez Articles
+## Writing Tips for StackLoom Articles
 
 1. **Use Markdown formatting**:
    - `# Heading 1` for the main title

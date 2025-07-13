@@ -1,4 +1,4 @@
-# TechOrbeez Blog - Project Documentation
+# StackLoom Blog - Project Documentation
 
 ## Overview
 A comprehensive blog website focused on Cloud Computing technologies including AWS, Python, and Node.js. The project is built with React frontend and Express backend using TypeScript throughout.
@@ -11,6 +11,9 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **Build Tool**: Vite for fast development and production builds
 
 ## Recent Changes
+- **January 13, 2025**: Changed blog name from "TechOrbeez" to "StackLoom" across all components, pages, and documentation
+- **January 13, 2025**: Updated all email domains from @techorbeez.com to @stackloom.com in seeding data
+- **January 13, 2025**: Updated HTML meta tags, titles, and Open Graph properties to reflect StackLoom branding
 - **January 13, 2025**: Added comprehensive About page with personal introduction, skills, experience timeline, and contact information
 - **January 13, 2025**: Updated navigation menu to include About page link (desktop and mobile)
 - **January 13, 2025**: Fixed sidebar alignment consistency across all pages (home, articles, article details, categories)
@@ -52,6 +55,7 @@ Current active storage: MemStorage (due to database connection issues)
 ## User Preferences
 - User requested comprehensive README file documentation
 - User requested playful loading animations and micro-interactions
+- User requested blog name change from "TechOrbeez" to "StackLoom"
 - Project should maintain focus on cloud computing content
 - Prefer working solutions over complex configurations
 - Enhanced user experience with smooth animations and interactive elements

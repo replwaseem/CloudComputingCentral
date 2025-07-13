@@ -61,10 +61,10 @@ export default function Category() {
   return (
     <>
       <Helmet>
-        <title>{category?.name || 'Category'} - TechOrbeez</title>
+        <title>{category?.name || 'Category'} - StackLoom</title>
         <meta 
           name="description" 
-          content={`Browse articles about ${category?.name || 'cloud computing'} on TechOrbeez. Tutorials, guides, and best practices.`} 
+          content={`Browse articles about ${category?.name || 'cloud computing'} on StackLoom. Tutorials, guides, and best practices.`} 
         />
       </Helmet>
 

@@ -5,7 +5,7 @@ type Theme = "light" | "dark";
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check for saved theme preference
-    const savedTheme = localStorage.getItem("techorbeez-theme");
+    const savedTheme = localStorage.getItem("stackloom-theme");
     
     // If we have a saved preference, use it
     if (savedTheme === "light" || savedTheme === "dark") {
@@ -25,7 +25,7 @@ export function useTheme() {
     // Update the data-theme attribute and localStorage when theme changes
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
-    localStorage.setItem("techorbeez-theme", theme);
+    localStorage.setItem("stackloom-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {

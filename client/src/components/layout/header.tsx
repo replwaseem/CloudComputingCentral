@@ -31,7 +31,7 @@ export default function Header() {
               <span className="text-primary-500 dark:text-primary-400">
                 <Cloud className="h-8 w-8" />
               </span>
-              <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-white">TechOrbeez</span>
+              <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-white">StackLoom</span>
             </Link>
           </div>
           
