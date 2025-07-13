@@ -16,8 +16,20 @@ import {
   type InsertArticleTag,
   type InsertSubscriber
 } from "@shared/schema";
-import { db } from "./db";
 import { eq, desc, sql, like, and, asc, or } from "drizzle-orm";
+
+// Conditionally import database only when needed
+let db: any = null;
+const isDatabaseEnabled = process.env.DATABASE_URL && process.env.NODE_ENV !== 'development';
+
+if (isDatabaseEnabled) {
+  try {
+    const dbModule = require("./db");
+    db = dbModule.db;
+  } catch (error) {
+    console.warn("Database not available, using in-memory storage");
+  }
+}
 
 // Interface for all storage operations
 export interface IStorage {
@@ -1635,5 +1647,8 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-// Use the database storage implementation
-export const storage = new MemStorage();
+// Automatically choose storage based on environment
+export const storage = isDatabaseEnabled && db ? new DatabaseStorage() : new MemStorage();
+
+// Log which storage is being used
+console.log(`Using ${isDatabaseEnabled && db ? 'Database' : 'Memory'} storage`);

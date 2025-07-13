@@ -11,12 +11,13 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **Build Tool**: Vite for fast development and production builds
 
 ## Recent Changes
+- **January 13, 2025**: Fixed local development setup - no DATABASE_URL required
+- **January 13, 2025**: Implemented automatic storage selection (Memory vs Database)
+- **January 13, 2025**: Added .env.example for local development configuration
+- **January 13, 2025**: Updated README with comprehensive local development instructions
 - **January 13, 2025**: Added comprehensive README.md file with project documentation
-- **January 13, 2025**: Temporarily switched to MemStorage due to database connection issues
 - **January 13, 2025**: Fixed database seeding script with proper column naming (snake_case)
 - **January 13, 2025**: Implemented complete PostgreSQL database integration with Drizzle ORM
-- **January 13, 2025**: Created DatabaseStorage class to replace MemStorage
-- **January 13, 2025**: Set up proper database schema with relations
 
 ## Current Status
 - Application is running successfully with in-memory storage

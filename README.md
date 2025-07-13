@@ -53,30 +53,46 @@ A modern, responsive blog platform focused on Cloud Computing technologies inclu
    npm install
    ```
 
-3. **Set up environment variables**
-   The project uses PostgreSQL database. Ensure you have:
-   - `DATABASE_URL` - PostgreSQL connection string
-   - `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE` - Individual database credentials
+3. **Set up environment variables** (optional for local development)
+   
+   For local development without a database:
+   ```bash
+   # No additional setup needed - the app will use in-memory storage
+   ```
+   
+   For local development with PostgreSQL:
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Edit .env and set your database credentials:
+   # DATABASE_URL=postgresql://username:password@localhost:5432/techorbeez
+   ```
 
-4. **Run database migrations**
+4. **Run database migrations** (only if using PostgreSQL)
    ```bash
    npm run db:push
    ```
 
-5. **Seed the database** (optional)
+5. **Seed the database** (only if using PostgreSQL)
    ```bash
    node seed-data.js
    ```
 
 ## 🚀 Usage
 
-### Development
+### Local Development
 Start the development server:
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5000`
+The application will automatically:
+- Use in-memory storage (no database required)
+- Start both backend and frontend servers
+- Be available at `http://localhost:5000`
+
+You should see the message "Using Memory storage" in the console, confirming that the application is running in local development mode with sample data.
 
 ### Production
 Build for production:
@@ -113,6 +129,15 @@ The application uses a PostgreSQL database with the following main tables:
 - **tags** - Flexible tagging system
 - **article_tags** - Many-to-many relationship between articles and tags
 - **subscribers** - Email subscribers
+
+## 💾 Storage System
+
+The application automatically selects the appropriate storage backend:
+
+- **Development Mode**: Uses in-memory storage when `DATABASE_URL` is not set
+- **Production Mode**: Uses PostgreSQL when `DATABASE_URL` is configured
+
+This allows for easy local development without requiring a database setup.
 
 ## 🔧 API Endpoints
 
