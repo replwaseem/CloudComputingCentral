@@ -38,16 +38,19 @@ interface FeaturedArticleProps {
 export default function FeaturedArticle({ article }: FeaturedArticleProps) {
   return (
     <section className="mb-12">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 dark:text-white">Featured Article</h2>
-      <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
+      <h2 className="text-3xl font-bold text-gray-900 mb-8 dark:text-white animate-slide-up">Featured Article</h2>
+      <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800 hover:shadow-xl transition-all duration-500 group">
         <div className="md:flex">
           <div className="md:flex-shrink-0 md:w-2/5">
             <Link href={`/articles/${article.slug}`}>
-              <img 
-                src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
-                alt={article.title} 
-                className="h-48 w-full object-cover md:h-full md:w-full hover:opacity-90 transition-opacity" 
-              />
+              <div className="relative overflow-hidden">
+                <img 
+                  src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
+                  alt={article.title} 
+                  className="h-48 w-full object-cover md:h-full md:w-full group-hover:scale-110 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
             </Link>
           </div>
           <div className="p-6 md:w-3/5">
@@ -67,7 +70,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
               <span className="text-xs text-gray-500 ml-auto dark:text-gray-400">{article.readTime || 0} min read</span>
             </div>
             <Link href={`/articles/${article.slug}`}>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
                 {article.title}
               </h3>
             </Link>

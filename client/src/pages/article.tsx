@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRoute } from "wouter";
-import { Skeleton } from "@/components/ui/skeleton";
+import { ArticleDetailSkeleton } from "@/components/ui/loading-cards";
 import Sidebar from "@/components/sidebar";
 import { Share2, Bookmark } from "lucide-react";
 import { formatDate, getCategoryColor } from "@/lib/utils";
@@ -52,9 +52,11 @@ export default function Article() {
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="lg:w-2/3">
           {isLoading ? (
-            <ArticleSkeleton />
+            <div className="animate-fade-in">
+              <ArticleDetailSkeleton />
+            </div>
           ) : article ? (
-            <article className="bg-white rounded-lg shadow-md p-8 dark:bg-gray-800">
+            <article className="bg-white rounded-lg shadow-md p-8 dark:bg-gray-800 animate-slide-up">
               <div className="mb-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {article.category && (
@@ -141,7 +143,9 @@ export default function Article() {
           ) : null}
         </div>
         
-        <Sidebar />
+        <div className="animate-slide-up" style={{ animationDelay: '300ms' } as React.CSSProperties}>
+          <Sidebar />
+        </div>
       </div>
     </div>
   );

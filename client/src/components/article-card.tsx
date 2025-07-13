@@ -29,25 +29,28 @@ interface ArticleCardProps {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
-    <article className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
+    <article className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 group">
       <Link href={`/articles/${article.slug}`}>
-        <img 
-          src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
-          alt={article.title} 
-          className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
-        />
+        <div className="relative overflow-hidden">
+          <img 
+            src={article.featuredImage || 'https://via.placeholder.com/800x400?text=No+Image'} 
+            alt={article.title} 
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+        </div>
       </Link>
       <div className="p-5">
         <div className="flex items-center mb-2">
           {article.category && (
-            <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${getCategoryColor(article.category.name)}`}>
+            <span className={`text-xs font-semibold px-2.5 py-0.5 rounded transition-all duration-200 hover:scale-110 ${getCategoryColor(article.category.name)}`}>
               {article.category.name}
             </span>
           )}
           <span className="text-xs text-gray-500 ml-2 dark:text-gray-400">{article.readTime || 5} min read</span>
         </div>
         <Link href={`/articles/${article.slug}`}>
-          <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
             {article.title}
           </h3>
         </Link>

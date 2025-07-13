@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import FeaturedArticle from "@/components/featured-article";
 import ArticleCard from "@/components/article-card";
 import Sidebar from "@/components/sidebar";
-import { Skeleton } from "@/components/ui/skeleton";
+import { FeaturedArticleSkeleton, ArticleCardSkeleton, SidebarSkeleton } from "@/components/ui/loading-cards";
+import { BouncingDots } from "@/components/ui/loading-spinner";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -22,33 +23,11 @@ export default function Home() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Featured Article Section */}
       {isFeaturedLoading ? (
-        <section className="mb-12">
-          <Skeleton className="h-10 w-64 mb-8" />
-          <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
-            <div className="md:flex">
-              <Skeleton className="h-48 w-full md:h-64 md:w-2/5" />
-              <div className="p-6 md:w-3/5">
-                <div className="flex gap-2 mb-2">
-                  <Skeleton className="h-6 w-20" />
-                  <Skeleton className="h-6 w-20" />
-                </div>
-                <Skeleton className="h-8 w-full mb-4" />
-                <Skeleton className="h-4 w-full mb-2" />
-                <Skeleton className="h-4 w-full mb-2" />
-                <Skeleton className="h-4 w-3/4 mb-4" />
-                <div className="flex items-center">
-                  <Skeleton className="h-10 w-10 rounded-full mr-4" />
-                  <div>
-                    <Skeleton className="h-4 w-32 mb-1" />
-                    <Skeleton className="h-3 w-24" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FeaturedArticleSkeleton />
       ) : (featuredArticle && featuredArticle.length > 0) ? (
-        <FeaturedArticle article={featuredArticle[0]} />
+        <div className="animate-fade-in">
+          <FeaturedArticle article={featuredArticle[0]} />
+        </div>
       ) : null}
 
       {/* Main Content Layout */}
@@ -71,32 +50,29 @@ export default function Home() {
           {isArticlesLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
-                  <Skeleton className="h-48 w-full" />
-                  <div className="p-5">
-                    <div className="flex gap-2 mb-2">
-                      <Skeleton className="h-5 w-16" />
-                      <Skeleton className="h-5 w-24" />
-                    </div>
-                    <Skeleton className="h-7 w-full mb-2" />
-                    <Skeleton className="h-4 w-full mb-2" />
-                    <Skeleton className="h-4 w-full mb-4" />
-                    <div className="flex items-center">
-                      <Skeleton className="h-8 w-8 rounded-full mr-2" />
-                      <div>
-                        <Skeleton className="h-4 w-32 mb-1" />
-                        <Skeleton className="h-3 w-24" />
-                      </div>
-                    </div>
-                  </div>
+                <ArticleCardSkeleton 
+                  key={i} 
+                  className="animate-scale-in" 
+                  style={{ animationDelay: `${i * 100}ms` } as React.CSSProperties}
+                />
+              ))}
+            </div>
+          ) : latestArticles && latestArticles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {latestArticles.map((article: any, index: number) => (
+                <div 
+                  key={article.id} 
+                  className="animate-slide-up"
+                  style={{ animationDelay: `${index * 100}ms` } as React.CSSProperties}
+                >
+                  <ArticleCard article={article} />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {latestArticles && latestArticles.map((article: any) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
+            <div className="text-center py-12 animate-fade-in">
+              <BouncingDots className="mb-4" />
+              <p className="text-gray-500 dark:text-gray-400">No articles found.</p>
             </div>
           )}
 
@@ -110,7 +86,9 @@ export default function Home() {
         </div>
 
         {/* Sidebar */}
-        <Sidebar />
+        <div className="animate-slide-up" style={{ animationDelay: '200ms' } as React.CSSProperties}>
+          <Sidebar />
+        </div>
       </div>
     </div>
   );
