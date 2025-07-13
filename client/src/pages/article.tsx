@@ -143,7 +143,7 @@ export default function Article() {
           ) : null}
         </div>
         
-        <Sidebar />
+        <Sidebar className="animate-slide-up" style={{ animationDelay: '300ms' } as React.CSSProperties} />
       </div>
     </div>
   );

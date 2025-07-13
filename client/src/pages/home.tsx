@@ -86,9 +86,7 @@ export default function Home() {
         </div>
 
         {/* Sidebar */}
-        <div className="animate-slide-up" style={{ animationDelay: '200ms' } as React.CSSProperties}>
-          <Sidebar />
-        </div>
+        <Sidebar className="animate-slide-up" style={{ animationDelay: '200ms' } as React.CSSProperties} />
       </div>
     </div>
   );

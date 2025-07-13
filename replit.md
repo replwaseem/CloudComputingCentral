@@ -11,6 +11,9 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **Build Tool**: Vite for fast development and production builds
 
 ## Recent Changes
+- **January 13, 2025**: Fixed sidebar alignment consistency across all pages (home, articles, article details, categories)
+- **January 13, 2025**: Enhanced Sidebar component with optional className and style props for flexible animations
+- **January 13, 2025**: Resolved Node.js v20 upgrade and port conflict issues (SERVER_PORT environment variable support)
 - **January 13, 2025**: Implemented comprehensive loading animations and micro-interactions system
 - **January 13, 2025**: Added playful loading components (spinners, skeleton cards, animated content)
 - **January 13, 2025**: Enhanced user experience with smooth transitions and hover effects
@@ -29,9 +32,11 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - Database schema is properly configured for PostgreSQL integration
 - All API endpoints are functional and returning data
 - Frontend is displaying articles, categories, and tags correctly
+- Sidebar alignment is consistent across all pages (home, articles, article details, categories)
 - Playful loading animations and micro-interactions fully implemented
 - Enhanced user experience with smooth transitions, hover effects, and animated content
 - Custom loading components: spinners, skeleton cards, loading overlays, and animated content wrappers
+- Server supports flexible port configuration via environment variables
 
 ## Storage Implementation
 The project supports two storage implementations:

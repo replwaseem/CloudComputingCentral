@@ -6,7 +6,12 @@ import { useState } from "react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
-export default function Sidebar() {
+interface SidebarProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export default function Sidebar({ className, style }: SidebarProps = {}) {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,7 +67,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="lg:w-1/3 space-y-8 animate-slide-up" style={{ animationDelay: '300ms' } as React.CSSProperties}>
+    <aside className={`lg:w-1/3 space-y-8 ${className || ''}`} style={style}>
       {/* Categories Widget */}
       <div className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800">
         <h3 className="text-xl font-bold text-gray-900 mb-4 dark:text-white">Categories</h3>
