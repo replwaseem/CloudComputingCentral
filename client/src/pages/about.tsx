@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatedContent } from "@/components/ui/animated-content";
-import { Mail, Github, Linkedin, Twitter, MapPin, Calendar, Coffee, Code } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Calendar, Coffee, Code } from "lucide-react";
 
 export default function About() {
   return (
@@ -29,7 +29,7 @@ export default function About() {
               </div>
             </div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Hi, I'm [Your Name]
+              Hi, I'm Waseem Shaik
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
               Cloud Computing Enthusiast • Full-Stack Developer • Technical Writer
@@ -37,7 +37,7 @@ export default function About() {
             <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-1" />
-                Your Location
+                India
               </div>
               <div className="flex items-center">
                 <Calendar className="h-4 w-4 mr-1" />
@@ -132,23 +132,23 @@ export default function About() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Let's Connect</h3>
                   <div className="space-y-3">
                     <a 
-                      href="mailto:your.email@example.com" 
+                      href="mailto:emayl.waseem@gmail.com" 
                       className="flex items-center text-gray-600 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400 transition-colors"
                     >
                       <Mail className="h-5 w-5 mr-3" />
-                      your.email@example.com
+                      emayl.waseem@gmail.com
                     </a>
                     <a 
-                      href="https://github.com/yourusername" 
+                      href="https://github.com/replwaseem" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center text-gray-600 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400 transition-colors"
                     >
                       <Github className="h-5 w-5 mr-3" />
-                      @yourusername
+                      @replwaseem
                     </a>
                     <a 
-                      href="https://linkedin.com/in/yourprofile" 
+                      href="https://linkedin.com/in/waseemshaik" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center text-gray-600 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400 transition-colors"
@@ -156,15 +156,7 @@ export default function About() {
                       <Linkedin className="h-5 w-5 mr-3" />
                       LinkedIn Profile
                     </a>
-                    <a 
-                      href="https://twitter.com/yourusername" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400 transition-colors"
-                    >
-                      <Twitter className="h-5 w-5 mr-3" />
-                      @yourusername
-                    </a>
+
                   </div>
                   <div className="mt-6">
                     <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white">
@@ -177,47 +169,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Experience Timeline */}
-          <AnimatedContent animation="slide-up" delay={500}>
-            <div className="bg-white rounded-lg shadow-md p-8 dark:bg-gray-800 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Professional Journey</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-3 h-3 bg-primary-500 rounded-full mt-2"></div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Senior Cloud Engineer</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Your Current Company • 2022 - Present</p>
-                    <p className="text-gray-600 dark:text-gray-300 mt-1">
-                      Leading cloud infrastructure design and implementation for enterprise clients. 
-                      Specializing in AWS serverless architectures and microservices deployment.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-3 h-3 bg-gray-300 rounded-full mt-2"></div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Full-Stack Developer</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Previous Company • 2020 - 2022</p>
-                    <p className="text-gray-600 dark:text-gray-300 mt-1">
-                      Built scalable web applications using React, Node.js, and Python. 
-                      Implemented CI/CD pipelines and containerized applications with Docker.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-3 h-3 bg-gray-300 rounded-full mt-2"></div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Software Developer</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">First Company • 2018 - 2020</p>
-                    <p className="text-gray-600 dark:text-gray-300 mt-1">
-                      Started my journey in software development, working with various technologies 
-                      and building foundational skills in programming and system design.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedContent>
+
 
           {/* Call to Action */}
           <AnimatedContent animation="fade-in" delay={600}>
