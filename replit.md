@@ -32,6 +32,8 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **January 13, 2025**: Fixed local development setup - no DATABASE_URL required
 - **January 13, 2025**: Implemented automatic storage selection (Memory vs Database)
 - **January 13, 2025**: Added .env.example for local development configuration
+- **January 13, 2025**: Updated README with detailed instructions for running frontend and backend locally (4 different modes)
+- **January 13, 2025**: Added API endpoint documentation and testing instructions to README
 - **January 13, 2025**: Updated README with comprehensive local development instructions
 - **January 13, 2025**: Added comprehensive README.md file with project documentation
 - **January 13, 2025**: Fixed database seeding script with proper column naming (snake_case)

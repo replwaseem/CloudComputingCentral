@@ -81,7 +81,70 @@ A modern, responsive blog platform focused on Cloud Computing technologies inclu
 
 ## 🚀 Usage
 
-### Local Development
+### Local Development Options
+
+#### Option 1: Full Stack Development (Default)
+Run both frontend and backend together:
+
+```bash
+# Install dependencies
+npm install
+
+# Start both frontend and backend
+npm run dev
+```
+
+This starts:
+- Backend API server on `http://localhost:5000`
+- Frontend with Vite dev server and hot reload
+- All API calls proxied automatically
+- In-memory storage (no database required)
+
+You should see "Using Memory storage" confirming local development mode.
+
+#### Option 2: Frontend Only (Static Development)
+Run only the frontend for UI development:
+
+```bash
+# Set API base URL for separate backend
+cp client/.env.example client/.env
+echo "VITE_API_BASE_URL=http://localhost:5000" > client/.env
+
+# Install dependencies
+npm install
+
+# Start only frontend
+npx vite --host 0.0.0.0 --port 3000
+```
+
+Frontend runs on `http://localhost:3000` and connects to separate backend.
+
+#### Option 3: Backend Only (API Development)
+Run only the backend API server:
+
+```bash
+# Install dependencies
+npm install
+
+# Start only backend
+npx tsx server/index.ts
+```
+
+Backend API runs on `http://localhost:5000` with endpoints available at `/api/*`.
+
+#### Option 4: Production-like Separation
+Test the separated architecture locally:
+
+```bash
+# Terminal 1: Start backend
+npx tsx server/index.ts
+
+# Terminal 2: Build and serve frontend
+./build-frontend.sh
+npx vite preview --host 0.0.0.0 --port 3000
+```
+
+### Node.js Compatibility
 
 **For Node.js v20.11.0 and above:**
 ```bash
@@ -89,7 +152,7 @@ npm run dev
 ```
 
 **For Node.js v18.x (compatibility mode):**
-If you encounter `import.meta.dirname` errors with Node.js v18, use the compatibility setup:
+If you encounter `import.meta.dirname` errors with Node.js v18:
 ```bash
 # Run the setup script for Node.js v18 compatibility
 node setup-local.js
@@ -101,18 +164,76 @@ npm run dev
 node restore-config.js
 ```
 
-The application will automatically:
-- Use in-memory storage (no database required)
-- Start both backend and frontend servers  
-- Be available at `http://localhost:5000`
+### Production & Deployment
 
-You should see the message "Using Memory storage" in the console, confirming that the application is running in local development mode with sample data.
-
-### Production
-Build for production:
+#### Single Deployment (Current Method)
+Build everything together:
 ```bash
 npm run build
+npm start
 ```
+
+#### Separate Deployments (Static + API)
+
+**Build Frontend for Static Hosting:**
+```bash
+# Configure API URL
+echo "VITE_API_BASE_URL=https://your-backend-api.com" > client/.env
+
+# Build static files
+./build-frontend.sh
+
+# Output: dist/public/ (deploy to Netlify, Vercel, etc.)
+```
+
+**Build Backend for API Hosting:**
+```bash
+# Build backend
+./build-backend.sh
+
+# Start production server
+NODE_ENV=production node dist/index.js
+
+# Or deploy dist/ folder to Railway, Render, etc.
+```
+
+See `separation-guide.md` for complete deployment instructions.
+
+### Testing the Setup
+
+#### Test Backend API
+```bash
+# Health check
+curl http://localhost:5000/health
+
+# Get categories
+curl http://localhost:5000/api/categories
+
+# Get articles
+curl http://localhost:5000/api/articles
+```
+
+#### Test Frontend
+- Open `http://localhost:3000` (frontend only) or `http://localhost:5000` (full stack)
+- Navigate through articles and categories
+- Search functionality should work
+- All content loads from API
+
+### API Endpoints
+
+The backend provides these main endpoints:
+
+- `GET /health` - Health check
+- `GET /api/categories` - List all categories
+- `GET /api/categories/:slug` - Get category by slug
+- `GET /api/articles` - List articles (paginated)
+- `GET /api/articles/featured` - Get featured articles
+- `GET /api/articles/:slug` - Get article by slug
+- `GET /api/articles/category/:slug` - Get articles by category
+- `GET /api/tags` - List all tags
+- `GET /api/tags/popular` - Get popular tags
+- `GET /api/search?q=query` - Search articles
+- `POST /api/subscribers` - Add email subscriber
 
 ## 📁 Project Structure
 
@@ -130,7 +251,16 @@ npm run build
 │   └── index.ts            # Server entry point
 ├── shared/                 # Shared types and schemas
 │   └── schema.ts           # Database schema definitions
-└── components.json         # Shadcn/UI configuration
+├── components.json         # Shadcn/UI configuration
+├── build-frontend.sh       # Frontend build script
+├── build-backend.sh        # Backend build script
+├── separation-guide.md     # Frontend/backend separation guide
+├── frontend-deploy.md      # Static hosting deployment guide
+├── backend-deploy.md       # API server deployment guide
+├── Dockerfile              # Container deployment
+├── netlify.toml           # Netlify configuration
+├── vercel.json            # Vercel configuration
+└── railway.toml           # Railway configuration
 ```
 
 ## 🗃️ Database Schema
