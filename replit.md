@@ -49,7 +49,8 @@ Current active storage: MemStorage (due to database connection issues)
 
 ## Known Issues
 - Database connection authentication failing with PostgreSQL
-- Need to resolve database credentials for full PostgreSQL functionality
+- Need to resolve database credentials for full PostgreSQL functionality  
+- Node.js v18 compatibility: `import.meta.dirname` requires Node.js v20.11.0+ (compatibility files provided)
 - Some TypeScript errors in storage implementation need cleanup
 
 ## Next Steps
@@ -63,3 +64,5 @@ Current active storage: MemStorage (due to database connection issues)
 - Frontend uses camelCase for JavaScript/TypeScript consistency
 - Seeding scripts updated to match database schema
 - Article management utilities available for content creation
+- Node.js v18 compatibility: Use `vite.config.local.ts` and setup scripts for older Node.js versions
+- Vite configuration uses `import.meta.dirname` which requires Node.js v20.11.0+

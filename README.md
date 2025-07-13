@@ -82,14 +82,28 @@ A modern, responsive blog platform focused on Cloud Computing technologies inclu
 ## 🚀 Usage
 
 ### Local Development
-Start the development server:
+
+**For Node.js v20.11.0 and above:**
 ```bash
 npm run dev
 ```
 
+**For Node.js v18.x (compatibility mode):**
+If you encounter `import.meta.dirname` errors with Node.js v18, use the compatibility setup:
+```bash
+# Run the setup script for Node.js v18 compatibility
+node setup-local.js
+
+# Then run the development server
+npm run dev
+
+# To restore original config later (optional)
+node restore-config.js
+```
+
 The application will automatically:
 - Use in-memory storage (no database required)
-- Start both backend and frontend servers
+- Start both backend and frontend servers  
 - Be available at `http://localhost:5000`
 
 You should see the message "Using Memory storage" in the console, confirming that the application is running in local development mode with sample data.
