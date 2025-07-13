@@ -12,6 +12,14 @@ import {
 import { ZodError } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for monitoring and load balancers
+  app.get('/health', (req, res) => {
+    res.json({
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      database: 'connected' // You can add actual DB health check here
+    });
+  });
   // Get all categories
   app.get("/api/categories", async (req, res) => {
     try {

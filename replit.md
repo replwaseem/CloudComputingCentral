@@ -11,6 +11,11 @@ A comprehensive blog website focused on Cloud Computing technologies including A
 - **Build Tool**: Vite for fast development and production builds
 
 ## Recent Changes
+- **January 13, 2025**: Implemented complete separation architecture for frontend static hosting and backend API deployment
+- **January 13, 2025**: Added configurable API base URL support (VITE_API_BASE_URL) for separate deployments
+- **January 13, 2025**: Created comprehensive deployment guides and configuration files for multiple platforms
+- **January 13, 2025**: Added health check endpoint (/health) for backend monitoring and load balancers
+- **January 13, 2025**: Created Docker configuration for containerized backend deployment
 - **January 13, 2025**: Changed blog name from "TechOrbeez" to "StackLoom" across all components, pages, and documentation
 - **January 13, 2025**: Updated all email domains from @techorbeez.com to @stackloom.com in seeding data
 - **January 13, 2025**: Updated HTML meta tags, titles, and Open Graph properties to reflect StackLoom branding

@@ -1,0 +1,16 @@
+# Railway configuration for StackLoom backend deployment
+
+[build]
+  builder = "nixpacks"
+  buildCommand = "./build-backend.sh"
+
+[deploy]
+  startCommand = "npm run start:backend"
+  healthcheckPath = "/health"
+  healthcheckTimeout = 300
+  restartPolicyType = "on_failure"
+
+# Environment variables (set these in Railway dashboard)
+# DATABASE_URL - PostgreSQL connection string
+# NODE_ENV - production
+# PORT - will be set automatically by Railway
