@@ -114,6 +114,15 @@ export default function About() {
                       </div>
                     </div>
                     <div>
+                      <h4 className="font-medium text-gray-900 dark:text-white mb-2">AI/ML</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary">TensorFlow</Badge>
+                        <Badge variant="secondary">PyTorch</Badge>
+                        <Badge variant="secondary">Scikit-learn</Badge>
+                        <Badge variant="secondary">OpenAI</Badge>
+                      </div>
+                    </div>
+                    <div>
                       <h4 className="font-medium text-gray-900 dark:text-white mb-2">DevOps</h4>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary">Docker</Badge>
