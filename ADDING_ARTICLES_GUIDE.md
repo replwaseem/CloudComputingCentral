@@ -33,7 +33,7 @@ The following IDs are available in the current database:
 - ID 1: AWS (slug: "aws")
 - ID 2: Python (slug: "python")
 - ID 3: NodeJS (slug: "nodejs")
-- ID 4: Cloud Architecture (slug: "cloud-architecture")
+- ID 4: AI/ML (slug: "ai-ml")
 - ID 5: DevOps (slug: "devops")
 
 ### Authors:

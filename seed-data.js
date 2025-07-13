@@ -20,7 +20,7 @@ async function main() {
       { name: 'AWS', slug: 'aws', description: 'Everything about Amazon Web Services', color: '#FF9900' },
       { name: 'Python', slug: 'python', description: 'Python programming and cloud integration', color: '#3776AB' },
       { name: 'NodeJS', slug: 'nodejs', description: 'NodeJS development and serverless implementations', color: '#339933' },
-      { name: 'Cloud Architecture', slug: 'cloud-architecture', description: 'Best practices for cloud architecture', color: '#0080FF' }
+      { name: 'AI/ML', slug: 'ai-ml', description: 'Artificial intelligence and machine learning articles', color: '#0080FF' }
     ];
     
     const categoryInsertResult = await client.query(
@@ -59,6 +59,10 @@ async function main() {
       { name: 'Express', slug: 'express' },
       { name: 'React', slug: 'react' },
       { name: 'Machine Learning', slug: 'machine-learning' },
+      { name: 'TensorFlow', slug: 'tensorflow' },
+      { name: 'PyTorch', slug: 'pytorch' },
+      { name: 'MLOps', slug: 'mlops' },
+      { name: 'Deep Learning', slug: 'deep-learning' },
       { name: 'Docker', slug: 'docker' },
       { name: 'Kubernetes', slug: 'kubernetes' },
       { name: 'CI/CD', slug: 'ci-cd' }

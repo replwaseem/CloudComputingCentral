@@ -165,10 +165,10 @@ export class MemStorage implements IStorage {
       color: "#10B981" // Node.js Green
     });
     
-    const cloudArchCategory = this.createCategory({
-      name: "Cloud Architecture",
-      slug: "cloud-architecture",
-      description: "Articles about cloud architecture patterns and practices",
+    const aimlCategory = this.createCategory({
+      name: "AI/ML",
+      slug: "ai-ml",
+      description: "Articles about artificial intelligence and machine learning",
       color: "#6366F1" // Indigo
     });
 
@@ -192,6 +192,10 @@ export class MemStorage implements IStorage {
     const fastAPITag = this.createTag({ name: "FastAPI", slug: "fastapi" });
     const pythonTag = this.createTag({ name: "Python", slug: "python" });
     const nodejsTag = this.createTag({ name: "Node.js", slug: "nodejs" });
+    const tensorflowTag = this.createTag({ name: "TensorFlow", slug: "tensorflow" });
+    const pytorchTag = this.createTag({ name: "PyTorch", slug: "pytorch" });
+    const mlOpsTag = this.createTag({ name: "MLOps", slug: "mlops" });
+    const deepLearningTag = this.createTag({ name: "Deep Learning", slug: "deep-learning" });
     
     // Create articles
     // Featured article
