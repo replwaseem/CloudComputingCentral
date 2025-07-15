@@ -1,4 +1,4 @@
-# StackLoom Blog
+# StackLoop Blog
 
 A modern, responsive blog platform focused on Cloud Computing technologies including AWS, Python, and Node.js.
 
